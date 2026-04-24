@@ -159,15 +159,19 @@ A user submits a text query such as:
 
 ```json
 "forest"
-```
+
 
 The system:
 - Encodes the query using CLIP
 - Searches the FAISS index for similar image embeddings
 - Returns the top-K most relevant images
 
+
+The
 **Example Response (JSON):**
-```
+
+```json
+
 [
   {
     "filename": "forest_3.jpg",
@@ -296,7 +300,8 @@ The implementation includes:
 - Embeddings are precomputed at startup for low-latency retrieval  
 - Labels are extracted using:
   ```python
-  label = filename.split("_")[0]```
+  label = filename.split("_")[0]
+  ```
 
 ---
 
