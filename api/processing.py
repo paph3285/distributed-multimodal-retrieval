@@ -279,29 +279,26 @@ def get_queue_debug_info():
 def get_architecture_summary():
     return {
         "system_name": "Distributed Multimodal Retrieval System (GeoCLIP)",
-        "components": {
-            "api": "FastAPI service handling requests",
-            "worker": "Background worker processing tasks",
-            "queue": "RabbitMQ message broker",
-            "database": "PostgreSQL for job tracking",
-            "vector_store": "FAISS for similarity search",
-            "embedding_model": "CLIP (image + text embeddings)"
+        "current_implementation": {
+            "api": "FastAPI service handling image uploads, text queries, and debug endpoints",
+            "processing_layer": "Coordinates upload/query workflows, simulated queue behavior, caching, and job metrics",
+            "queue_layer": "Simulates asynchronous task enqueue/dequeue behavior and worker assignment",
+            "database": "PostgreSQL helper layer used for job result tracking",
+            "vector_store": "FAISS index used for similarity search",
+            "embedding_model": "Pretrained CLIP model used for image and text embeddings"
         },
         "features": [
             "Image-to-text retrieval",
             "Text-to-image retrieval",
-            "Asynchronous task queue",
-            "Caching layer for queries",
-            "Job tracking and metrics",
-            "System health + debug endpoints"
+            "Simulated asynchronous task queue",
+            "Query caching layer",
+            "Job tracking and runtime metrics",
+            "System health and debug endpoints"
         ],
-        "deployment": {
-            "containerization": "Docker + Docker Compose",
-            "services": [
-                "geoclip-api",
-                "geoclip-worker",
-                "geoclip-rabbitmq",
-                "geoclip-postgres"
-            ]
-        }
+        "future_distributed_components": [
+            "RabbitMQ message broker for true asynchronous job distribution",
+            "Dedicated worker services for distributed embedding generation",
+            "Expanded PostgreSQL metadata and job tracking",
+            "Docker Compose / Kubernetes deployment"
+        ]
     }

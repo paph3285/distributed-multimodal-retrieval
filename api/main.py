@@ -1,3 +1,5 @@
+import shutil
+
 from fastapi.staticfiles import StaticFiles
 from fastapi import FastAPI, UploadFile, File
 import os
@@ -23,8 +25,10 @@ from api.processing import (
 
 app = FastAPI()
 
-app.mount("/images", StaticFiles(directory=UPLOAD_DIR), name="images")
+from api.retrieval import UPLOAD_DIR, CURATED_DIR
 
+app.mount("/uploads", StaticFiles(directory=UPLOAD_DIR), name="uploads")
+app.mount("/curated", StaticFiles(directory=CURATED_DIR), name="curated")
 
 @app.on_event("startup")
 def startup_event():
@@ -37,22 +41,25 @@ def root():
     return {"message": "A Distributed Multimodal Retrieval System Using CLIP Embeddings API is running"}
 
 
-@app.post("/upload-image/")
+@app.post("/upload_image/")
 async def upload_image(file: UploadFile = File(...)):
-    file_path = os.path.join(UPLOAD_DIR, file.filename)
+    try:
+        file_path = os.path.join(UPLOAD_DIR, file.filename)
 
-    with open(file_path, "wb") as f:
-        content = await file.read()
-        f.write(content)
+        with open(file_path, "wb") as f:
+            shutil.copyfileobj(file.file, f)
 
-    assigned_label, image_embedding_shape = await process_image_upload(file_path, file.filename)
+        assigned_label, image_embedding_shape = await process_image_upload(file_path, file.filename)
 
-    return {
-        "filename": file.filename,
-        "assigned_label": assigned_label,
-        "image_embedding_shape": image_embedding_shape,
-        "message": "Image uploaded, embedded, and labeled successfully"
-    }
+        return {
+            "filename": file.filename,
+            "assigned_label": assigned_label,
+            "image_embedding_shape": image_embedding_shape,
+            "message": "Image uploaded, embedded, and labeled successfully"
+        }
+
+    except Exception as e:
+        return {"error": str(e)}
 
 
 @app.get("/text-query/")

@@ -55,7 +55,8 @@ def add_image(file_path, filename):
     IMAGE_DB.append({
         "filename": filename,
         "label": assigned_label,
-        "embedding": image_embedding.tolist()
+        "embedding": image_embedding.tolist(),
+        "source": "uploaded"
     })
 
     global FAISS_INDEX
@@ -85,7 +86,8 @@ def load_curated_dataset():
             IMAGE_DB.append({
                 "filename": filename,
                 "label": label,
-                "embedding": image_embedding.tolist()
+                "embedding": image_embedding.tolist(),
+                "source": "curated"
             })
 
     global FAISS_INDEX
@@ -128,7 +130,7 @@ def query_text(query):
             "similarity_score": round(similarity_score, 4),
             "label_boost": round(label_boost, 4),
             "final_score": round(final_score, 4),
-            "image_url": f"/images/{img['filename']}"
+            "image_url": f"/curated/{img['filename']}" if img.get("source") == "curated" else f"/uploads/{img['filename']}"
         })
 
 
@@ -148,7 +150,7 @@ def debug_images():
             {
                 "filename": img["filename"],
                 "label": img["label"],
-                "image_url": f"/images/{img['filename']}"
+                "image_url": f"/curated/{img['filename']}" if img.get("source") == "curated" else f"/uploads/{img['filename']}"
             }
             for img in IMAGE_DB
         ]
