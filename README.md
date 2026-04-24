@@ -155,70 +155,51 @@ The system supports both text-to-image and image-to-text retrieval workflows thr
 
 ### Text-to-Image Retrieval
 
-A user submits a text query such as:
-
-```json
-"forest"
-
+A user submits a text query such as `"forest"`.
 
 The system:
-- Encodes the query using CLIP
-- Searches the FAISS index for similar image embeddings
-- Returns the top-K most relevant images
 
+- Encodes the query using CLIP
+
+- Searches the FAISS index for similar image embeddings
+
+- Returns the top-K most relevant images
 
 **Example Response (JSON):**
 
-```json
-[
-  {
-    "filename": "forest_3.jpg",
-    "label": "forest",
-    "score": 0.92,
-    "image_url": "http://localhost:8000/storage/forest_3.jpg"
-  },
-  {
-    "filename": "forest_7.jpg",
-    "label": "forest",
-    "score": 0.89,
-    "image_url": "http://localhost:8000/storage/forest_7.jpg"
-  }
-]
+`[{"filename": "forest_3.jpg", "label": "forest", "score": 0.92, "image_url": "http://localhost:8000/storage/forest_3.jpg"}, {"filename": "forest_7.jpg", "label": "forest", "score": 0.89, "image_url": "http://localhost:8000/storage/forest_7.jpg"}]`
 
-**Image-to-Text Retrieval**
+---
+
+### Image-to-Text Retrieval
 
 A user uploads an image file.
 
 The system:
-- Generates an image embedding using CLIP
-- Compares it against predefined text label embeddings
-- Returns the most relevant labels
 
-```markdown
+- Generates an image embedding using CLIP
+
+- Compares it against predefined text label embeddings
+
+- Returns the most relevant labels
 
 **Example Output (JSON):**
 
-```json
+`{"top_labels": [{"label": "mountain", "score": 0.87}, {"label": "forest", "score": 0.82}]}`
 
-{
+---
 
-  "top_labels": [
-
-    { "label": "mountain", "score": 0.87 },
-
-    { "label": "forest", "score": 0.82 }
-
-  ]
-
-}
-
-*Debug Endpoints*
+### Debug Endpoints
 
 The system includes built-in endpoints for monitoring and debugging:
-- /debug/status/ → system metrics
-- /debug/images/ → indexed dataset
-- /debug/jobs/ → job tracking
-- /debug/queue/ → queue state
+
+- `/debug/status/` → system metrics
+
+- `/debug/images/` → indexed dataset
+
+- `/debug/jobs/` → job tracking
+
+- `/debug/queue/` → queue state
 
 
 ## Status
