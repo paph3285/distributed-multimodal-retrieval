@@ -386,11 +386,12 @@ Each query string is used as a key, with the corresponding retrieval results sto
 Before performing CLIP inference and FAISS search, the system checks whether the query already exists in the cache:
 
 ```python
-QUERY_CACHE[query] = (results, embedding_shape)
-CACHE_MISSES += 1
+if query in QUERY_CACHE:
+    CACHE_HITS += 1
+    results, embedding_shape = QUERY_CACHE[query]
 ```
 
-### Performance Tracking
+### Performance Tracing
 
 The system tracks:
 
