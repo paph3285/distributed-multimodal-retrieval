@@ -1,0 +1,35 @@
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environments
+venv/
+.env
+
+
+# Mac / OS
+.DS_Store
+
+
+# Logs
+*.log
+
+# Model / cache files
+.cache/
+*.pt
+
+
+# Project-specific
+
+# Uploaded user images (dynamic)
+storage/uploads/
+
+# Curated dataset (too large for GitHub)
+storage/curated_landscapes/
+
+# (Optional) FAISS index files if created later
+*.index
+*.faiss

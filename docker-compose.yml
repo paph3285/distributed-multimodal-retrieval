@@ -1,0 +1,60 @@
+services:
+  api:
+    build: .
+    container_name: geoclip-api
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    restart: always
+    environment:
+      - PYTHONPATH=/app
+      - POSTGRES_HOST=postgres
+      - POSTGRES_DB=geoclip
+      - POSTGRES_USER=geoclip_user
+      - POSTGRES_PASSWORD=geoclip_pass
+    depends_on:
+      - rabbitmq
+      - postgres
+
+  worker:
+    build: .
+    container_name: geoclip-worker
+    command: python -u -m worker.worker
+    volumes:
+      - .:/app
+    depends_on:
+      - rabbitmq
+      - api
+      - postgres
+    restart: always
+    environment:
+      - PYTHONPATH=/app
+      - POSTGRES_HOST=postgres
+      - POSTGRES_DB=geoclip
+      - POSTGRES_USER=geoclip_user
+      - POSTGRES_PASSWORD=geoclip_pass
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: geoclip-rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    restart: always
+
+  postgres:
+    image: postgres:15
+    container_name: geoclip-postgres
+    environment:
+      POSTGRES_DB: geoclip
+      POSTGRES_USER: geoclip_user
+      POSTGRES_PASSWORD: geoclip_pass
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: always
+
+volumes:
+  postgres_data:
