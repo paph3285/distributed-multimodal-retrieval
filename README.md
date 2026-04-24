@@ -157,7 +157,7 @@ The system supports both text-to-image and image-to-text retrieval workflows thr
 
 A user submits a text query such as 
 ```md 
-`"forest"`
+"forest"
 ```
 
 The system:
