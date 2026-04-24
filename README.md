@@ -157,7 +157,7 @@ The system supports both text-to-image and image-to-text retrieval workflows thr
 
 A user submits a text query such as 
 ```md 
-"forest"
+`"forest"`
 ```
 
 The system:
@@ -186,7 +186,7 @@ The system:
 **Example Output (JSON):**
 
 ```md
-{"top_labels": [{"label": "mountain", "score": 0.87}, {"label": "forest", "score": 0.82}]}`
+{"top_labels": [{"label": "mountain", "score": 0.87}, {"label": "forest", "score": 0.82}]}
 ```
 
 ---
