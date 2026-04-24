@@ -156,9 +156,8 @@ The system supports both text-to-image and image-to-text retrieval workflows thr
 ### Text-to-Image Retrieval
 
 A user submits a text query such as 
-```md 
-"forest"
-```
+
+`"forest"`
 
 The system:
 
@@ -166,10 +165,23 @@ The system:
 - Searches the FAISS index for similar image embeddings
 - Returns the top-K most relevant images
 
-**Example Response (JSON):**
+**Example Response:**
 
-```md 
-[{"filename": "forest_3.jpg", "label": "forest", "score": 0.92, "image_url": "http://localhost:8000/storage/forest_3.jpg"}, {"filename": "forest_7.jpg", "label": "forest", "score": 0.89, "image_url": "http://localhost:8000/storage/forest_7.jpg"}]
+```json
+[
+  {
+    "filename": "forest_3.jpg",
+    "label": "forest",
+    "score": 0.92,
+    "image_url": "http://localhost:8000/curated/forest_3.jpg"
+  },
+  {
+    "filename": "forest_7.jpg",
+    "label": "forest",
+    "score": 0.89,
+    "image_url": "http://localhost:8000/curated/forest_5.jpg"
+  }
+]
 ```
 
 ---
@@ -183,10 +195,21 @@ The system:
 - Generates an image embedding using CLIP
 - Compares it against predefined text label embeddings
 - Returns the most relevant labels
-**Example Output (JSON):**
+**Example Output:**
 
-```md
-{"top_labels": [{"label": "mountain", "score": 0.87}, {"label": "forest", "score": 0.82}]}
+```json
+{
+  "top_labels": [
+    {
+      "label": "mountain",
+      "score": 0.87
+    },
+    {
+      "label": "forest",
+      "score": 0.82
+    }
+  ]
+}
 ```
 
 ---
