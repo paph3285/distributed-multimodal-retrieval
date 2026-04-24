@@ -118,7 +118,7 @@ Images are stored locally and may be sourced from publicly available datasets su
 
 ## Project Structure
 
-```
+```md
 distributed-multimodal-retrieval/
 ├── api/
 ├── db/
@@ -155,7 +155,10 @@ The system supports both text-to-image and image-to-text retrieval workflows thr
 
 ### Text-to-Image Retrieval
 
-A user submits a text query such as `"forest"`.
+A user submits a text query such as 
+```md 
+"forest"
+```
 
 The system:
 
@@ -165,7 +168,9 @@ The system:
 
 **Example Response (JSON):**
 
-`[{"filename": "forest_3.jpg", "label": "forest", "score": 0.92, "image_url": "http://localhost:8000/storage/forest_3.jpg"}, {"filename": "forest_7.jpg", "label": "forest", "score": 0.89, "image_url": "http://localhost:8000/storage/forest_7.jpg"}]`
+```md 
+[{"filename": "forest_3.jpg", "label": "forest", "score": 0.92, "image_url": "http://localhost:8000/storage/forest_3.jpg"}, {"filename": "forest_7.jpg", "label": "forest", "score": 0.89, "image_url": "http://localhost:8000/storage/forest_7.jpg"}]
+```
 
 ---
 
@@ -180,7 +185,9 @@ The system:
 - Returns the most relevant labels
 **Example Output (JSON):**
 
-`{"top_labels": [{"label": "mountain", "score": 0.87}, {"label": "forest", "score": 0.82}]}`
+```md
+{"top_labels": [{"label": "mountain", "score": 0.87}, {"label": "forest", "score": 0.82}]}`
+```
 
 ---
 
