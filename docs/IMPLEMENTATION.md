@@ -383,13 +383,14 @@ Each query string is used as a key, with the corresponding retrieval results sto
 
 ### Cache Lookup
 
-Before performing CLIP inference and FAISS search, the system checks whether the query already exists in the cache:
+Before performing CLIP inference and FAISS search, the system checks whether the query already exists in the cache: 
 
 ```python
 if query in QUERY_CACHE:
     CACHE_HITS += 1
     results, embedding_shape = QUERY_CACHE[query]
 ```
+If a cached result is found, the system skips embedding generation and retrieval.
 
 ### Performance Tracking
 
