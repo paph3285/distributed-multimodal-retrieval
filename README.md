@@ -167,11 +167,9 @@ The system:
 - Returns the top-K most relevant images
 
 
-The
 **Example Response (JSON):**
 
 ```json
-
 [
   {
     "filename": "forest_3.jpg",
@@ -186,7 +184,6 @@ The
     "image_url": "http://localhost:8000/storage/forest_7.jpg"
   }
 ]
-```
 
 **Image-to-Text Retrieval**
 
@@ -197,15 +194,23 @@ The system:
 - Compares it against predefined text label embeddings
 - Returns the most relevant labels
 
+```markdown
+
 **Example Output (JSON):**
-```
+
+```json
+
 {
+
   "top_labels": [
+
     { "label": "mountain", "score": 0.87 },
+
     { "label": "forest", "score": 0.82 }
+
   ]
+
 }
-```
 
 *Debug Endpoints*
 
