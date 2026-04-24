@@ -160,9 +160,7 @@ A user submits a text query such as `"forest"`.
 The system:
 
 - Encodes the query using CLIP
-
 - Searches the FAISS index for similar image embeddings
-
 - Returns the top-K most relevant images
 
 **Example Response (JSON):**
@@ -178,11 +176,8 @@ A user uploads an image file.
 The system:
 
 - Generates an image embedding using CLIP
-
 - Compares it against predefined text label embeddings
-
 - Returns the most relevant labels
-
 **Example Output (JSON):**
 
 `{"top_labels": [{"label": "mountain", "score": 0.87}, {"label": "forest", "score": 0.82}]}`
@@ -194,11 +189,8 @@ The system:
 The system includes built-in endpoints for monitoring and debugging:
 
 - `/debug/status/` → system metrics
-
 - `/debug/images/` → indexed dataset
-
 - `/debug/jobs/` → job tracking
-
 - `/debug/queue/` → queue state
 
 
