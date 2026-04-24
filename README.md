@@ -71,7 +71,7 @@ The current implementation provides a fully functional end-to-end multimodal ret
 - Results include:
     * filename
     * label
-    * similarity score (cosine distance)
+    * similarity score
     * image URL
 
 ---
