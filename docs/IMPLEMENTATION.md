@@ -391,7 +391,7 @@ if query in QUERY_CACHE:
     results, embedding_shape = QUERY_CACHE[query]
 ```
 
-### Performance Tracing
+### Performance Tracking
 
 The system tracks:
 
